@@ -57,17 +57,14 @@
 
             // 패치 버전이 낮을 경우
             case VersionUtil.VERSION_LOW_PATCH:
-                // TODO:
                 break;
 
             // 최신버전일 경우
             case VersionUtil.VERSION_LATEST:
-                // TODO:
                 break;
 
             // 버전체크 오류
             case VersionUtil.VERSION_ERROR:
-                // TODO:
                 break;
         }
 ```
