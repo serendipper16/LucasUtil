@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.TypedValue;
 import android.widget.Toast;
+
+import java.io.File;
 
 /**
  * Created by Administrator on 2017-07-07.
@@ -221,5 +224,67 @@ public class BasicUtil {
     /** 권한 승인여부 체크 **/
     public static boolean isPermissionGranted(Context context, String permission) {
         return (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    /** 폴더 및 하위파일 전체 삭제 **/
+    public static boolean removeDir(String dirPath) {
+        File file = new File(dirPath);
+        File chileFileList[] = file.listFiles();
+
+        for (File childFile : chileFileList) {
+            if (childFile.isDirectory()) {
+                removeDir(childFile.getAbsolutePath());
+            } else {
+                childFile.delete();
+            }
+        }
+
+        if (file.delete()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** 폴더 용량 체크 **/
+    public static long dirSize(String dirPath) {
+        long totalMemory = 0;
+        File file = new File(dirPath);
+        File[] childFileList = file.listFiles();
+
+        if (childFileList == null) {
+            return 0;
+        }
+
+        for (File childFile : childFileList) {
+            if (childFile.isDirectory()) {
+                totalMemory += dirSize(childFile.getAbsolutePath());
+            } else {
+                totalMemory += childFile.length();
+            }
+        }
+
+        return totalMemory;
+    }
+
+    /** 설정화면으로 이동 **/
+    public static void launchAppSettings(Context context){
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + context.getPackageName()));
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /** 설치되어있는 어플리케이션 실행(설치되어있지 않다면 마켓으로 이동) **/
+    public static void launchInstalledApp(Context context, String packageName){
+        PackageManager pm = context.getPackageManager();
+
+        try {
+            pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            context.startActivity(pm.getLaunchIntentForPackage(packageName));
+        } catch (Exception e) {
+            e.printStackTrace();
+            launchPlayStore(context, packageName);
+        }
     }
 }

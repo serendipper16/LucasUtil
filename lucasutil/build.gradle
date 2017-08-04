@@ -14,9 +14,9 @@ publish {
     userOrg = 'lucaskim'
     groupId = 'com.lucaskim'
     artifactId = 'lucasutil'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.2'
     desc = 'LucasUtil'
-    website = 'Site'
+    website = 'https://github.com/serendipper16/LucasUtil'
 }
 
 android {

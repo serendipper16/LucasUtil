@@ -13,7 +13,7 @@ public class KeyHandleUtil {
     public static void doubleBackFinish(Activity activity) {
         if (System.currentTimeMillis() > (mBackKeyPressedTime + BACK_KEY_DELAY)) {
             mBackKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(activity, activity.getString(R.string.msg_confirm_double_back_pressed), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, activity.getString(R.string.back_pressed_confirm), Toast.LENGTH_SHORT).show();
             return;
         }
 

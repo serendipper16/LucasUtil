@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">LucasUtil</string>
-
-    <!--KeyHandelUtil-->
-    <string name="back_pressed_confirm">뒤로가기 버튼을 한번 더 누르면 종료됩니다.</string>
 </resources>
