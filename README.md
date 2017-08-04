@@ -77,19 +77,19 @@
 <dependency>
   <groupId>com.lucaskim</groupId>
   <artifactId>lucasutil</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.2</version>
   <type>pom</type>
 </dependency>
 ```
 
 ## Gradle
 ```xml
-compile 'com.lucaskim:lucasutil:1.0.0'
+compile 'com.lucaskim:lucasutil:1.0.2'
 ```
 
 ## Ivy
 ```xml
-<dependency org='com.lucaskim' name='lucasutil' rev='1.0.0'>
+<dependency org='com.lucaskim' name='lucasutil' rev='1.0.2'>
   <artifact name='lucasutil' ext='pom' ></artifact>
 </dependency>
 ```
